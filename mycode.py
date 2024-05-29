@@ -1,4 +1,4 @@
-class myclass:
+class MyClass:
     def __init__(self):
         self.my_fav = {'Paris': 500, 'NYC': 600}
     
@@ -8,12 +8,11 @@ class myclass:
     def valid_this(self, dist):
         return isinstance(dist, str)
 
-class passagner:
+class Passenger:
     def __init__(self, num):
         self.num = num
     
     def valid_number(self):
-        print("this working here")
         return isinstance(self.num, int) and self.num>0
 
     def for_here_discount(self):
@@ -25,15 +24,8 @@ class passagner:
         else:
             return 0.0
 
-class Plane:
-    def __init__(self, dist, num, dur):
-        self.myclass = myclass()
-        self.passanger = passagner(num)
-        self.total_time = total_time(dur)
-        self.dist = dist
-        self.seats = 200
 
-class total_time:
+class TotalTime:
     def __init__(self, dur):
         self.dur = dur
 
@@ -49,17 +41,17 @@ class total_time:
     def get_weekend(self):
         return 100 if self.dur > 7 else 0
 
-class vacation:
+class Vacation:
     cost_bas = 1000
 
     def __init__(self, dist, num, dur):
-        self.myclass = myclass()
-        self.passagner = passagner(num)
-        self.total_time = total_time(dur)
+        self.myclass = MyClass()
+        self.passenger = Passenger(num)
+        self.total_time = TotalTime(dur)
         self.dist = dist
 
     def sum(self):
-        if not self.myclass.valid_this(self.dist) or not self.passagner.valid_number() or not self.total_time.is_valid_total_time():
+        if not self.myclass.valid_this(self.dist) or not self.passenger.valid_number() or not self.total_time.is_valid_total_time():
             return -1
         
         number_total = self.cost_bas
@@ -67,7 +59,7 @@ class vacation:
         number_total += self.total_time.get_fee()
         number_total -= self.total_time.get_best_promo_ever()
 
-        discount = self.passagner.for_here_discount()
+        discount = self.passenger.for_here_discount()
         number_total = number_total - (number_total * discount)
         
         return max(int(number_total), 0)
@@ -77,7 +69,7 @@ def main():
     num = 5
     dur = 10
 
-    calculator = vacation(dist, num, dur)
+    calculator = Vacation(dist, num, dur)
     cost = calculator.sum()
 
     if cost == -1:
